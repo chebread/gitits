@@ -5,23 +5,19 @@ const matches = path => {
   // true is redirection
   // false is non-redirection
   // all process is here
+  // year에 2008부터 현재까지만 입력 받고 문자는 안되게 하기
   const matched = path.match(
-    /\-$|^\-|\/|\s|\%20|[%\$\#\@\!\~\+\+\_\&\.\,\<\>\:\;\"\'\{\}\[\]\`\)\(\*]/gi
+    /[a-zA-Z,0-9]([a-zA-Z,0,9,\-]+([a-zA-Z,0-9]))?([a-zA-Z,0-9]?)\/?([0-9]+)?[0-9]?$/gi // chegrad/ 가능 -che 불가 che- 불가 che/20c 불가 che/20 가능 che/- 불가
   );
-  // input filled 랑은 다르게 해야할 듯
-  // user/year 에서 year에 숫자가 안오면 true 반환하기
-  // matched의 매치된 / 가 2개 이하 일때는 false 넘기기
-  if (!matched) {
-    // null => true
-    return false;
-  } else {
-    console.log(matched);
-    if (matched.join() === '/') {
-      // / === / => false // === / => true
-      return false;
-    }
+  console.log(matched);
+  if (matched === null) {
     return true;
-  } // is => true
+  } else {
+    if (matched.join() === path) return false;
+    else return true;
+  }
 };
 
 export default matches;
+
+// [a-zA-Z,0-9]([a-zA-Z,0,9,\-]+([a-zA-Z,0-9]))?([a-zA-Z,0-9]?)\/?([0-9]+)?[0-9]?$
