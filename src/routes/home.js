@@ -1,19 +1,21 @@
+import './home.css';
 import renderHTML from '../components/renderHTML.js';
 import router from '../components/router.js';
 import matches from '../components/matches.js';
-import './home.css';
 
 const home = () => {
   const render = () => {
+    // home만 gitits.com 로고 표시하기
     const html = `
-      <div>gitits.com</div>
-      <div>@<input id="id" type="text" /></div>
+      <div>gitits.com</div> 
+      <div>@<input type="text" id="username-input" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" /></div>
     `;
     renderHTML(html, document.querySelector('#root'));
-    document.querySelector('#id').addEventListener('keydown', e => {
+    document.querySelector('#username-input').addEventListener('keydown', e => {
       if (e.keyCode === 13) {
         const isMatches = matches(e.target.value);
         // console.log(isMatches);
+        console.log(isMatches);
         if (isMatches) {
           // isMaches is true
           e.target.value = '';

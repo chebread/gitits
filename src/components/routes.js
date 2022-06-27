@@ -8,6 +8,7 @@ const routes = path => {
   const staticRoutes = {
     '/': {
       route: home,
+      title: 'gitits.com',
     },
     '/404': {
       route: notFoundPage,
