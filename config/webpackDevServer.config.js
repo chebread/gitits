@@ -1,14 +1,21 @@
-// import path from 'path';
 import paths from './paths.js';
-// import { fileURLToPath } from 'url';
 
-// const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const port = process.env.PORT || 8080;
 const devServerConfig = () => {
   return {
     compress: true,
     hot: true,
-    server: 'https',
+    server: {
+      type: 'https',
+      // options: {
+      //   ca: './path/to/server.pem',
+      //   pfx: './path/to/server.pfx',
+      //   key: './path/to/server.key',
+      //   cert: './path/to/server.crt',
+      //   passphrase: 'webpack-dev-server',
+      //   requestCert: true,
+      // },
+    },
     static: {
       directory: paths.appPublic,
     },
