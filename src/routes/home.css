@@ -4,3 +4,7 @@ div {
 div input {
   font-size: 30px;
 }
+input::-webkit-credentials-auto-fill-button {
+  /* Remove Safari keychain button*/
+  visibility: hidden;
+}

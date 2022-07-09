@@ -1,4 +1,5 @@
-import render from './render.js';
+import helmet from './helmet.js';
+import renderRoute from './renderRoute.js';
 
 const router = path => {
   if (!(path === window.location.pathname)) {
@@ -6,9 +7,11 @@ const router = path => {
     window.history.pushState(null, null, url);
   }
   // 404처리는 routes의 동적처리로 해주고 있음
-  render(path);
+  renderRoute(path);
+  helmet(path);
   window.onpopstate = () => {
-    render(window.location.pathname);
+    renderRoute(window.location.pathname);
+    helmet(path);
   };
 };
 
