@@ -11,6 +11,7 @@ const request = async query => {
     headers: options,
     body: JSON.stringify(body),
   }).then(data => data.json());
+
   return response;
 };
 
