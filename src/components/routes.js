@@ -29,7 +29,7 @@ const routes = path => {
     } else
       return {
         ['/' + path.substring(1, path.length)]: {
-          route: () => content(path.substring(1, path.length)), // url parameter를 전달한다 (클로저 함수)
+          route: () => content(), // url parameter를 전달한다 (클로저 함수)
           title: `@${
             path.substring(1, path.indexOf('/', 1)) === '/'
               ? path.substring(1, path.length)
@@ -41,4 +41,4 @@ const routes = path => {
     return staticRoutes[path];
   }
 };
-export default routes;
+export default routes; // routes는 URL Parameter가 변경될때 마다 만드는 동적 객체입니다

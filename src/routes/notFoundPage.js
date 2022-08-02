@@ -1,8 +1,7 @@
 import renderHTML from '../components/renderHTML.js';
 
 const notFoundPage = () => {
-  const render = () => {
-    const contentMsg = `
+  const contentMsg = `
       <div style="display: block;">
         <div style="padding: 5px;">
           <div style="max-width: 850px; font-size: 16px; word-wrap: break-word;" role="content">
@@ -11,23 +10,21 @@ const notFoundPage = () => {
           </div>
       </div>
     `;
-    renderHTML(contentMsg, document.querySelector('#root'));
-    document
-      .querySelector('a')
-      .addEventListener(
-        'ontouchstart' in document.documentElement ? 'touchstart' : 'mouseover',
-        e =>
-          (e.target.style =
-            'all: unset; cursor: text; color: royalblue; text-decoration: underline;')
-      );
-    document
-      .querySelector('a')
-      .addEventListener(
-        'ontouchstart' in document.documentElement ? 'touchend' : 'mouseleave',
-        e => (e.target.style = 'all: unset; cursor: text; color: royalblue;')
-      );
-  };
-  render();
+  renderHTML(contentMsg, document.querySelector('#root'));
+  document
+    .querySelector('a')
+    .addEventListener(
+      'ontouchstart' in document.documentElement ? 'touchstart' : 'mouseover',
+      e =>
+        (e.target.style =
+          'all: unset; cursor: text; color: royalblue; text-decoration: underline;')
+    );
+  document
+    .querySelector('a')
+    .addEventListener(
+      'ontouchstart' in document.documentElement ? 'touchend' : 'mouseleave',
+      e => (e.target.style = 'all: unset; cursor: text; color: royalblue;')
+    );
 };
 
 export default notFoundPage;
