@@ -3,6 +3,7 @@ import './app.css';
 import router from './components/router.js';
 
 const app = () => {
+  // console.log('render');
   router(window.location.pathname);
   // render는 항상 url을 인자로 받아야만 한다! (클로저 때문에!)
   document.addEventListener('DOMContentLoaded', () => {

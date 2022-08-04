@@ -3,3 +3,9 @@ body {
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
   overflow-x: hidden;
 }
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: black;
+    color: white;
+  }
+} ;
