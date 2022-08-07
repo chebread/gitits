@@ -1,6 +1,6 @@
 import renderHTML from '../components/renderHTML.js';
 import request from '../components/request.js';
-import useState from '../components/useState.js';
+import { useState } from '../components/util.js';
 import innerContent from './innerContent.js';
 // import isSelected from '../components/isSelected.js';
 // path parameter type => users/years/ (or users/)
