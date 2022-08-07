@@ -29,7 +29,13 @@ const routes = path => {
     } else
       return {
         ['/' + path.substring(1, path.length)]: {
-          route: () => content(), // url parameter를 전달한다 (클로저 함수)
+          route: () =>
+            content(
+              window.location.pathname.substring(
+                1,
+                window.location.pathname.length
+              )
+            ), // url parameter를 전달한다 (클로저 함수)
           title: `@${
             path.substring(1, path.indexOf('/', 1)) === '/'
               ? path.substring(1, path.length)
