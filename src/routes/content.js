@@ -6,11 +6,6 @@ import innerContent from './innerContent.js';
 // path parameter type => users/years/ (or users/)
 
 const content = () => {
-  const path = window.location.pathname.substring(
-    1,
-    window.location.pathname.length
-  ); // 항상 url parameter는 컴포넌트내에서 관리 해야한다
-
   const [commits, setCommits] = useState(path);
   const [v, setV] = useState(0);
   window.increse = () => {

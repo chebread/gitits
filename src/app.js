@@ -1,6 +1,5 @@
 import './reset.css';
 import './app.css';
-import router from './components/router.js';
 import { render } from './components/util.js';
 
 const app = () => {
