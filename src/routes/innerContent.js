@@ -1,5 +1,5 @@
 import renderHTML from '../components/renderHTML.js';
-import useState from '../components/useState.js';
+import { useState } from '../components/util.js';
 
 const innerContent = () => {
   const [v, setV] = useState([1]);
