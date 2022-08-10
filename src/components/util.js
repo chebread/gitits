@@ -2,8 +2,14 @@ import debounceFrame from './debounceFrame.js';
 import renderRoute from './renderRoute.js';
 
 const util = () => {
-  const render = (path = window.location.pathname) => {
-    options.path = path;
+  const options = {
+    currentStateKey: 0,
+    states: [],
+    path: '',
+  };
+  const render = () => {
+    // render는 app.js에서 한번만 실행된다!
+    options.path = window.location.pathname;
     _render();
     document.addEventListener('DOMContentLoaded', () => {
       document.body.addEventListener('click', e => {
@@ -16,7 +22,6 @@ const util = () => {
               options.currentStateKey = 0;
             }
             options.path = url;
-
             _render();
           }
         }
@@ -31,21 +36,14 @@ const util = () => {
       window.history.pushState(null, null, url);
     }
     renderRoute(path);
-    //helmet(path);
     window.onpopstate = () => {
       if (options.states) {
         options.states = [];
         options.currentStateKey = 0;
       }
       renderRoute(window.location.pathname);
-      //helmet(path);
     };
   });
-  const options = {
-    currentStateKey: 0,
-    states: [],
-    path: '',
-  };
   const useState = initState => {
     const { currentStateKey: key, states } = options;
     if (options.states.length === options.currentStateKey) {
@@ -54,7 +52,8 @@ const util = () => {
     const state = states[key]; // const state = options.states[options.currentStateKey];
     const setState = newState => {
       states[key] = newState;
-      render();
+      options.path = window.location.pathname;
+      _render();
     };
     options.currentStateKey += 1;
     return [state, setState];
