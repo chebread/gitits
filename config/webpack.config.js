@@ -116,6 +116,10 @@ const webpackConfig = webpackEnv => {
         publicPath: paths.publicPath,
       }),
       new webpack.DefinePlugin(env.stringified),
+      new MiniCssExtractPlugin({
+        filename: '[name].[hash:8].css',
+        chunkFilename: '[name].[hash:8].chunk.css',
+      }),
     ],
   };
 };
