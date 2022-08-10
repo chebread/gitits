@@ -3,8 +3,6 @@ import './app.css';
 import render from './components/render.js';
 
 const app = () => {
-  // console.log('render');
-  render();
-  // render는 항상 url을 인자로 받아야만 한다! (클로저 때문에!)
+  render(); // 최상단 컴포넌트에서 한번만 실행가능 한 함수입니다.
 };
 app(); // app 컴포넌트는 자기 자신을 실행하는 함수입니다. (index.js와 같은 역할)
