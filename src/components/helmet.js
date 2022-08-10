@@ -1,15 +1,4 @@
 // this helment function is like React helemet library
-import routes from '../components/routes.js';
-import appendHTML from '../components/appendHTML.js';
-
-const updateTitle = title => {
-  document.title = title;
-};
-
-const updateMetaTag = (content, targetElement) => {
-  targetElement.setAttirbutes('content', content);
-};
-
 const helmet = path => {
   // // document.title = routes(path).title + (path === '/' ? '' : ' - gitits.com');
   // const username = routes(path).title;
