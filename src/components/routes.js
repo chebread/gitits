@@ -3,7 +3,6 @@ import notFoundPage from '../routes/notFoundPage.js';
 import home from '../routes/home.js';
 import content from '../routes/content.js';
 
-// 정적 라우트만 선언되어 있습니다. 동적 라우트는 라우터에서 관리합니다.
 const routes = path => {
   const staticRoutes = {
     '/': {
@@ -14,9 +13,6 @@ const routes = path => {
       route: notFoundPage,
       title: '404 Not found page',
     },
-    // '/home/house': {
-    //   route: home,
-    // },
   };
   if (!staticRoutes[path]) {
     // 동적라우트 -> static 라우트에 선언되지 않았다면 그냥 지금의 주소를 반영한 주소를 바로 렌더링한다

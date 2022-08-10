@@ -5,11 +5,10 @@ const util = () => {
   const options = {
     currentStateKey: 0,
     states: [],
-    path: '',
+    path: window.location.pathname, // value for render()
   };
   const render = () => {
     // render는 app.js에서 한번만 실행된다!
-    options.path = window.location.pathname;
     _render();
     document.addEventListener('DOMContentLoaded', () => {
       document.body.addEventListener('click', e => {
@@ -17,7 +16,9 @@ const util = () => {
           const url = e.target.attributes.href.nodeValue;
           if (url.search(/https?:\/\//) === -1) {
             e.preventDefault();
-            if (options.states) {
+            if (options.states.length != 0) {
+              //console.log('a link 초기화');
+              // 초기화 함수
               options.states = [];
               options.currentStateKey = 0;
             }
@@ -30,18 +31,27 @@ const util = () => {
   };
   const _render = debounceFrame(() => {
     const { path } = options;
-    options.currentStateKey = 0;
+    options.currentStateKey = 0; // like render key = 0
     if (!(path === window.location.pathname)) {
       const url = window.location.origin + path;
       window.history.pushState(null, null, url);
     }
     renderRoute(path);
+    // console.log(options.path, 'outer');
+    helmet();
     window.onpopstate = () => {
-      if (options.states) {
+      const currnetPath = window.location.pathname;
+      if (options.states.length != 0) {
+        //console.log('router 초기화');
+        // 초기화 함수
         options.states = [];
         options.currentStateKey = 0;
       }
-      renderRoute(window.location.pathname);
+      options.path = currnetPath;
+      const { path } = options;
+      renderRoute(path);
+      // console.log(options.path, 'inner');
+      helmet();
     };
   });
   const useState = initState => {
@@ -58,8 +68,19 @@ const util = () => {
     options.currentStateKey += 1;
     return [state, setState];
   };
-  return { useState, render };
+  const useEffect = (cb, deps) => {
+    const oldDeps = options.states[options.currentStateKey];
+
+    let hasChanged = true;
+    if (oldDeps) {
+      hasChanged = deps.some((d, index) => !Object.is(d, oldDeps[index]));
+    }
+    if (hasChanged) cb();
+    options.states[options.currentStateKey] = deps;
+    options.currentStateKey += 1;
+  };
+  return { render, useState, useEffect };
 };
 
-const { useState, render } = util();
-export { useState, render };
+const { render, useState, useEffect } = util();
+export { render, useState, useEffect };
