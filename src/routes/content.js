@@ -5,25 +5,24 @@ import loading from './loading.js';
 import notFoundError from './notFoundError.js';
 import useState from '../components/useState.js';
 import useEffect from '../components/useEffect.js';
+import link from '../components/link.js';
 
 const content = path => {
   // path parameter type => users/years/ (or users/)
-  const pathArray = path.split('/'); // string to array
   const [username, setUsername] = useState('');
-  const [parameterYear, setParameterYear] = useState(0); // path parameter
   const [totalContributions, setTotalContributions] = useState(0);
   // const [contributionYears, setContributionYears] = useState([]);
   const [error, setError] = useState(''); // fetching user error
   const [init, setInit] = useState(false);
 
   useEffect(() => {
+    const pathArray = path.split('/'); // string to array
     const username = pathArray[0];
     const parameterYear =
       pathArray[1] === undefined || pathArray[1] === ''
         ? new Date().getFullYear()
         : pathArray[1];
     setUsername(username); // scope is different
-    setParameterYear(parameterYear);
     // contributionYears
     const query = {
       query: `query {
@@ -37,6 +36,7 @@ const content = path => {
         }`,
     };
     (async () => {
+      console.log(1);
       const data = await request(query).then(data => data.data);
       try {
         setTotalContributions(
@@ -72,6 +72,7 @@ const content = path => {
         ? loading({ username })
         : notFoundError({ error, username })
     }
+    <div><a rel="noopener noreferrer" href="https://github.com/${username}" target="_blank">Go to ${username}'s github</div>
   `;
   renderHTML(html, document.querySelector('#root'));
 };

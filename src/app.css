@@ -10,6 +10,9 @@ body {
   }
 }
 
-a:hover {
-  color: royalblue;
+/* user's reset css*/
+a {
+  all: unset;
+  cursor: text;
+  color: rgb(64, 104, 224);
 }
