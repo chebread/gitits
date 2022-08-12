@@ -1,6 +1,11 @@
+import routes from './routes.js';
+
 // this helment function is like React helemet library
+
 const helmet = path => {
-  // // document.title = routes(path).title + (path === '/' ? '' : ' - gitits.com');
+  document.title = `${
+    routes(path).title + (path === '/' ? '' : ' - gitits.to')
+  }`;
   // const username = routes(path).title;
   // const title = username + (path === '/' ? '' : ' - gitits.com');
   // // const description = `This is ${username}'s gitits`;
