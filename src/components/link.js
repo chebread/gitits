@@ -1,5 +1,4 @@
-import router from './router.js';
+import { link } from '../utils/util.js';
 
-const link = (url, content) => {};
-
-export default link;
+const f = () => link();
+export default f;

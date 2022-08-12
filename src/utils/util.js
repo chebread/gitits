@@ -1,6 +1,7 @@
 import debounceFrame from './debounceFrame.js';
-import renderRoute from '../components/renderRoute.js';
 import helmet from '../components/helmet.js';
+import changePath from '../components/changePath.js';
+import renderRoute from '../components/renderRoute.js';
 
 const util = () => {
   const options = {
@@ -8,6 +9,14 @@ const util = () => {
     states: [],
     path: window.location.pathname, // value for render()
   };
+  const stateInit = len => {
+    if (len != 0) {
+      console.log('초기화');
+      options.states = [];
+      options.currentStateKey = 0;
+    }
+  };
+  const link = () => {};
   const render = () => {
     // render는 app.js에서 한번만 실행된다!
     _render();
@@ -17,14 +26,9 @@ const util = () => {
         if (e.target.nodeName === 'A') {
           const url = e.target.attributes.href.nodeValue;
           if (url.search(/https?:\/\//) === -1) {
-            e.preventDefault();
-            if (options.states.length != 0) {
-              //console.log('a link 초기화');
-              // 초기화 함수
-              options.states = [];
-              options.currentStateKey = 0;
-            }
+            e.preventDefault(); // 이거 때문에 초기화 필요
             options.path = url;
+            stateInit(options.states.length);
             _render();
           }
         }
@@ -34,22 +38,15 @@ const util = () => {
   const _render = debounceFrame(() => {
     const { path } = options;
     helmet(path);
+    changePath(path);
     options.currentStateKey = 0; // like render key = 0
-    if (!(path === window.location.pathname)) {
-      const url = window.location.origin + path;
-      window.history.pushState(null, null, url);
-    }
     renderRoute(path);
     window.onpopstate = () => {
-      const currnetPath = window.location.pathname;
-      if (options.states.length != 0) {
-        // 초기화 함수
-        options.states = [];
-        options.currentStateKey = 0;
-      }
-      options.path = currnetPath;
+      const currentPath = window.location.pathname;
+      options.path = currentPath;
       const { path } = options;
       helmet(path);
+      stateInit(options.states.length);
       renderRoute(path);
     };
   });
@@ -78,8 +75,8 @@ const util = () => {
     options.states[options.currentStateKey] = deps;
     options.currentStateKey += 1;
   };
-  return { render, useState, useEffect };
+  return { render, useState, useEffect, link };
 };
 
-const { render, useState, useEffect } = util();
-export { render, useState, useEffect };
+const { render, useState, useEffect, link } = util();
+export { render, useState, useEffect, link };
