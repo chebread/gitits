@@ -6,7 +6,7 @@ import matches from '../components/matches.js';
 const home = () => {
   // home만 gitits.com 로고 표시하기
   const html = `
-      <div>gitits.com</div> 
+      <div>gitits</div> 
       </div>
         @<input id="username-input" autocomplete="off" type="text" />
       </div>

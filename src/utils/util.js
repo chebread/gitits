@@ -1,6 +1,6 @@
 import debounceFrame from './debounceFrame.js';
-import renderRoute from './renderRoute.js';
-import helmet from './helmet.js';
+import renderRoute from '../components/renderRoute.js';
+import helmet from '../components/helmet.js';
 
 const util = () => {
   const options = {
@@ -11,6 +11,7 @@ const util = () => {
   const render = () => {
     // render는 app.js에서 한번만 실행된다!
     _render();
+    // 이부분을 Link 함수로 치환한다!
     document.addEventListener('DOMContentLoaded', () => {
       document.body.addEventListener('click', e => {
         if (e.target.nodeName === 'A') {
@@ -32,27 +33,24 @@ const util = () => {
   };
   const _render = debounceFrame(() => {
     const { path } = options;
+    helmet(path);
     options.currentStateKey = 0; // like render key = 0
     if (!(path === window.location.pathname)) {
       const url = window.location.origin + path;
       window.history.pushState(null, null, url);
     }
     renderRoute(path);
-    // console.log(options.path, 'outer');
-    helmet();
     window.onpopstate = () => {
       const currnetPath = window.location.pathname;
       if (options.states.length != 0) {
-        //console.log('router 초기화');
         // 초기화 함수
         options.states = [];
         options.currentStateKey = 0;
       }
       options.path = currnetPath;
       const { path } = options;
+      helmet(path);
       renderRoute(path);
-      // console.log(options.path, 'inner');
-      helmet();
     };
   });
   const useState = initState => {
