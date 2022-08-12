@@ -5,7 +5,7 @@ import renderRoute from '../components/renderRoute.js';
 
 const util = () => {
   const options = {
-    currentStateKey: 0,
+    stateKey: 0,
     states: [],
     path: window.location.pathname, // value for render()
   };
@@ -13,7 +13,7 @@ const util = () => {
     if (len != 0) {
       console.log('초기화');
       options.states = [];
-      options.currentStateKey = 0;
+      options.stateKey = 0;
     }
   };
   const link = () => {};
@@ -39,7 +39,7 @@ const util = () => {
     const { path } = options;
     helmet(path);
     changePath(path);
-    options.currentStateKey = 0; // like render key = 0
+    options.stateKey = 0; // like render key = 0
     renderRoute(path);
     window.onpopstate = () => {
       const currentPath = window.location.pathname;
@@ -51,29 +51,29 @@ const util = () => {
     };
   });
   const useState = initState => {
-    const { currentStateKey: key, states } = options;
-    if (options.states.length === options.currentStateKey) {
+    const { stateKey: key, states } = options;
+    if (options.states.length === options.stateKey) {
       options.states.push(initState);
     }
-    const state = states[key]; // const state = options.states[options.currentStateKey];
+    const state = states[key]; // const state = options.states[options.stateKey];
     const setState = newState => {
       states[key] = newState;
       options.path = window.location.pathname;
       _render();
     };
-    options.currentStateKey += 1;
+    options.stateKey += 1;
     return [state, setState];
   };
   const useEffect = (cb, deps) => {
-    const oldDeps = options.states[options.currentStateKey];
+    const oldDeps = options.states[options.stateKey];
 
     let hasChanged = true;
     if (oldDeps) {
       hasChanged = deps.some((d, index) => !Object.is(d, oldDeps[index]));
     }
     if (hasChanged) cb();
-    options.states[options.currentStateKey] = deps;
-    options.currentStateKey += 1;
+    options.states[options.stateKey] = deps;
+    options.stateKey += 1;
   };
   return { render, useState, useEffect, link };
 };
