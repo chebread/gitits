@@ -17,18 +17,7 @@ const util = () => {
     }
   };
   const link = (path, content) => {
-    // const f = () => {
-    //   console.log(1);
-    //   router(path);
-    // };
-    // var button = document.createElement('button');
-    // button.onclick = f;
-    // button.innerHTML = content;
-    // var div = document.createElement('div');
-    // div.appendChild(button);
-    // var html = div.innerHTML;
-    // console.log(html);
-    // return html;
+    // a tag로 하며 전달 받은 path로 이동 및 content가 html로 표시되어야 함
   };
   const render = () => {
     _render();
@@ -38,6 +27,7 @@ const util = () => {
         if (e.target.nodeName === 'A') {
           const url = e.target.attributes.href.nodeValue;
           if (url.search(/https?:\/\//) === -1) {
+            // http(s)이 문자열에 포함되어 있지 않다면 SPA형 Link 동작을 실행한다
             e.preventDefault(); // 이거 때문에 초기화 필요
             options.path = url;
             stateInit(options.states.length);

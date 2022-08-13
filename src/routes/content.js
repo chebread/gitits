@@ -36,7 +36,7 @@ const content = path => {
         }`,
     };
     (async () => {
-      console.log(1);
+      // console.log(1);
       const data = await request(query).then(data => data.data);
       try {
         setTotalContributions(
