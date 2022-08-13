@@ -1,6 +1,6 @@
 {
   "name": "gitits",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "This can easily and specifically check Git commits.",
   "private": "true",
   "scripts": {
