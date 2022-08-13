@@ -81,7 +81,7 @@ const webpackConfig = webpackEnv => {
           exclude: [/\.(js|mjs)$/, /\.html$/, /\.json$/],
           options: {
             name: '[name].[ext]?[hash:8]',
-            limit: 20000,
+            limit: 2000,
           },
         },
       ],
