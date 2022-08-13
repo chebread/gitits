@@ -105,7 +105,7 @@ const webpackConfig = webpackEnv => {
                   keepClosingSlash: true,
                   minifyJS: true,
                   minifyCSS: true,
-                  minifyURLs: true, // ?
+                  minifyURLs: true,
                 },
               }
             : undefined
@@ -114,6 +114,21 @@ const webpackConfig = webpackEnv => {
       new WebpackManifestPlugin.WebpackManifestPlugin({
         fileName: 'manifest.json',
         publicPath: paths.publicPath,
+        // velog-client
+        generate: (seed, files, entrypoints) => {
+          const manifestFiles = files.reduce((manifest, file) => {
+            manifest[file.name] = file.path;
+            return manifest;
+          }, seed);
+          const entrypointFiles = entrypoints.main.filter(
+            fileName => !fileName.endsWith('.map')
+          );
+
+          return {
+            files: manifestFiles,
+            entrypoints: entrypointFiles,
+          };
+        },
       }),
       new webpack.DefinePlugin(env.stringified),
       new MiniCssExtractPlugin({
