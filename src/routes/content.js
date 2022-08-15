@@ -1,18 +1,18 @@
 import './content.css';
 import useState from '../components/useState.js';
 import useEffect from '../components/useEffect.js';
+import getPath from '../components/getPath.js';
 import getUsername from '../components/getUsername.js';
 import getParameterYear from '../components/getParameterYear.js';
 import request from '../components/request.js';
 import renderHTML from '../components/renderHTML.js';
 import loading from './loading.js';
 import errorRoutes from '../components/errorRoutes.js';
-// import getPath from '../components/getPath.js';
 
 const content = path => {
-  // useEffect(() => {
-  //   getPath(path); // init path
-  // }, []);
+  useEffect(() => {
+    getPath(path);
+  }, []);
   const username = getUsername();
   const parameterYear = getParameterYear();
   const [totalContributions, setTotalContributions] = useState(0);
@@ -22,7 +22,7 @@ const content = path => {
 
   useEffect(() => {
     const utcYear = new Date().getUTCFullYear();
-    const isParameter = parameterYear === null ? false : true;
+    const isParameter = parameterYear === undefined ? false : true;
     if (isParameter) {
       // year excess
       if (parameterYear < 2008 || parameterYear > utcYear) {
