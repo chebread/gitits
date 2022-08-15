@@ -4,8 +4,10 @@ const getParameterYear = () => {
   const path = getPath();
   const pathArray = path.split('/');
   const parameterYear =
-    pathArray[1] === undefined || pathArray[1] === '' ? null : pathArray[1];
-  return parameterYear; // 만약 parameter가 전달되지 않았다면 null을 반환합니다
+    pathArray[1] === undefined || pathArray[1] === ''
+      ? undefined
+      : pathArray[1];
+  return parameterYear; // 만약 parameter가 전달되지 않았다면 undefined을 반환합니다
 };
 
 export default getParameterYear;
