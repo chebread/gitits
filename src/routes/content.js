@@ -23,7 +23,7 @@ const content = () => {
       // year excess
       if (parameterYear < 2008 || parameterYear > utcYear) {
         setIsError(true);
-        setErrorCode('year');
+        setErrorCode('YEAR_EXCESS');
         return;
       }
     }
@@ -54,7 +54,7 @@ const content = () => {
         // not found user
         if (data.user === null) {
           setIsError(true);
-          setErrorCode('user');
+          setErrorCode('NOT_FOUND_USER');
         } else {
           // 혹시나 다른 에러 발생시
           console.error(err);
