@@ -1,6 +1,8 @@
 import paths from './paths.js';
 
 const port = process.env.PORT || 8080;
+const DEFAULT_BROWSER = 'Google Chrome';
+
 const devServerConfig = () => {
   return {
     compress: true,
@@ -20,6 +22,11 @@ const devServerConfig = () => {
       index: paths.publicPath,
     },
     port,
+    open: {
+      app: {
+        name: DEFAULT_BROWSER,
+      },
+    },
   };
 };
 

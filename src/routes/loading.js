@@ -1,5 +1,10 @@
-const loading = ({ username }) => `
-  <div>${username} is loaded...</div>
-`;
+import getUsername from '../components/getUsername.js';
+
+const loading = () => {
+  const username = getUsername();
+  return `
+    <div>${username} is loaded...</div>
+  `;
+};
 
 export default loading;
