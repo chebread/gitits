@@ -3,8 +3,8 @@ import yearExcess from '../routes/yearExcess.js';
 
 const errorRoutes = errorCode => {
   const staticRoutes = {
-    user: notFoundUser,
-    year: yearExcess,
+    NOT_FOUND_USER: notFoundUser,
+    YEAR_EXCESS: yearExcess,
   };
   return staticRoutes[errorCode]();
 };
