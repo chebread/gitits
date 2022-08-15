@@ -1,11 +1,20 @@
 const getPath = () => {
   // path parameter type => users/years/ (or users/)
-  // 이것을 클로저로 구현해야 함 (routes에서 처리하면 될꺼 같음 (한번 렌더링 되는 컴포넌트를 찾자))
+  // let path = '';
+  // const f = url => {
+  //   if (url && path != url) {
+  //     // 현재 path에서 한 번만 값이 초기화됩니다
+  //     path = url;
+  //   }
+  //   return path;
+  // };
+  // return f;
   const path = window.location.pathname.substring(
     1,
     window.location.pathname.length
-  );
+  ); // 그냥 이렇게 합니다 (보편적인 path라)
   return path;
 };
 
+// const f = getPath();
 export default getPath;

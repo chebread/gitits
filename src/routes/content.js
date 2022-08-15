@@ -7,8 +7,12 @@ import request from '../components/request.js';
 import renderHTML from '../components/renderHTML.js';
 import loading from './loading.js';
 import errorRoutes from '../components/errorRoutes.js';
+// import getPath from '../components/getPath.js';
 
-const content = () => {
+const content = path => {
+  // useEffect(() => {
+  //   getPath(path); // init path
+  // }, []);
   const username = getUsername();
   const parameterYear = getParameterYear();
   const [totalContributions, setTotalContributions] = useState(0);
@@ -18,7 +22,7 @@ const content = () => {
 
   useEffect(() => {
     const utcYear = new Date().getUTCFullYear();
-    const isParameter = parameterYear === null ? false : true; // 파라미터가 있는지 없는지 확인합니다
+    const isParameter = parameterYear === null ? false : true;
     if (isParameter) {
       // year excess
       if (parameterYear < 2008 || parameterYear > utcYear) {
@@ -56,7 +60,7 @@ const content = () => {
           setIsError(true);
           setErrorCode('NOT_FOUND_USER');
         } else {
-          // 혹시나 다른 에러 발생시
+          // other errors
           console.error(err);
         }
       }

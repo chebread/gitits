@@ -25,7 +25,13 @@ const routes = path => {
     } else
       return {
         ['/' + path.substring(1, path.length)]: {
-          route: () => content(), // url parameter
+          route: () =>
+            content(
+              window.location.pathname.substring(
+                1,
+                window.location.pathname.length
+              )
+            ), // url parameter
           title: `@${
             path.substring(1, path.indexOf('/', 1)) === '/'
               ? path.substring(1, path.length)
