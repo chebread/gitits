@@ -2,7 +2,6 @@ import debounceFrame from './debounceFrame.js';
 import helmet from '../components/helmet.js';
 import changePath from '../components/changePath.js';
 import renderRoute from '../components/renderRoute.js';
-import router from '../components/router.js';
 
 const util = () => {
   const options = {
@@ -15,9 +14,6 @@ const util = () => {
       options.states = [];
       options.stateKey = 0;
     }
-  };
-  const link = (path, content) => {
-    // a tag로 하며 전달 받은 path로 이동 및 content가 html로 표시되어야 함
   };
   const render = () => {
     _render();
@@ -80,8 +76,8 @@ const util = () => {
     options.states[options.stateKey] = deps;
     options.stateKey += 1;
   };
-  return { render, useState, useEffect, link };
+  return { render, useState, useEffect };
 };
 
-const { render, useState, useEffect, link } = util();
-export { render, useState, useEffect, link };
+const { render, useState, useEffect } = util();
+export { render, useState, useEffect };

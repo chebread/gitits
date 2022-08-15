@@ -1,76 +1,77 @@
-import renderHTML from '../components/renderHTML.js';
-import request from './request.js';
-import isSelected from './isSelected.js';
-import loading from './loading.js';
-import notFoundError from './notFoundError.js';
+import './content.css';
 import useState from '../components/useState.js';
 import useEffect from '../components/useEffect.js';
-import link from '../components/link.js';
+import getUsername from '../components/getUsername.js';
+import getParameterYear from '../components/getParameterYear.js';
+import request from '../components/request.js';
+import renderHTML from '../components/renderHTML.js';
+import loading from './loading.js';
+import errorRoutes from '../components/errorRoutes.js';
 
-const content = path => {
-  // path parameter type => users/years/ (or users/)
-  const [username, setUsername] = useState('');
+const content = () => {
+  const username = getUsername();
+  const parameterYear = getParameterYear();
   const [totalContributions, setTotalContributions] = useState(0);
-  // const [contributionYears, setContributionYears] = useState([]);
-  const [error, setError] = useState(''); // fetching user error
-  const [init, setInit] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [errorCode, setErrorCode] = useState(''); // errorCode
+  const [init, setInit] = useState(false); // for loading
 
   useEffect(() => {
-    const pathArray = path.split('/'); // string to array
-    const username = pathArray[0];
-    const parameterYear =
-      pathArray[1] === undefined || pathArray[1] === ''
-        ? new Date().getFullYear()
-        : pathArray[1];
-    setUsername(username); // scope is different
-    // contributionYears
-    const query = {
-      query: `query {
+    const utcYear = new Date().getUTCFullYear();
+    const isParameter = parameterYear === null ? false : true; // 파라미터가 있는지 없는지 확인합니다
+    if (isParameter) {
+      // year excess
+      if (parameterYear < 2008 || parameterYear > utcYear) {
+        setIsError(true);
+        setErrorCode('year');
+        return;
+      }
+    }
+    // request
+    (async () => {
+      const query = {
+        query: `query {
           user(login: "${username}") {
-            ${`contributionsCollection(from: "${parameterYear}-01-01T00:00:00", to: "${parameterYear}-12-01T00:00:00")`} {
+            ${`contributionsCollection(from: "${
+              isParameter ? parameterYear : utcYear
+            }-01-01T00:00:00", to: "${
+              isParameter ? parameterYear : utcYear
+            }-12-31T23:59:59")`} {
               contributionCalendar {
                 totalContributions
               }
             }
           }
         }`,
-    };
-    (async () => {
-      // console.log(1);
+      };
       const data = await request(query).then(data => data.data);
       try {
-        setTotalContributions(
+        const totalContributions =
           data.user.contributionsCollection.contributionCalendar
-            .totalContributions
-        );
-        // setContributionYears([
-        //   ...data.user.contributionsCollection.contributionYears,
-        // ]);
+            .totalContributions;
+        setTotalContributions(totalContributions);
       } catch (err) {
-        setError(data);
+        // not found user
+        if (data.user === null) {
+          setIsError(true);
+          setErrorCode('user');
+        } else {
+          // 혹시나 다른 에러 발생시
+          console.error(err);
+        }
       }
       setInit(true); // user loading init
     })();
   }, []);
 
-  // <div id="years">${contributionYears
-  //   .map(
-  //     item =>
-  //       `<p><a href="${`/${username}/${item}`}">${item} ${
-  //         isSelected(item, parameterYear) ? 'chosen' : ''
-  //       }</a></p>`
-  //   )
-  //   .join('')}
-  // </div>
-
   const html = `
     <div><a href="/">Back to the home</a></div>
     ${
-      init != false && error == '' // loadding and error processing
+      init != false && isError === false // loadding and error processing
         ? `<div id="commits">${totalContributions} is ${username}</div>`
-        : error == ''
-        ? loading({ username })
-        : notFoundError({ error, username })
+        : isError === false
+        ? loading()
+        : errorRoutes(errorCode)
     }
     <div><a rel="noopener noreferrer" href="https://github.com/${username}" target="_blank">Go to ${username}'s github</div>
   `;
