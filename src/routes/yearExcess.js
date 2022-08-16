@@ -1,8 +1,8 @@
-import getParameterYear from '../components/getParameterYear.js';
+import getParameterYear from './getParameterYear.js';
 
 const yearExcess = () => {
-  const parameterYear = getParameterYear();
-  return `${parameterYear} is year excess`;
+  const year = getParameterYear();
+  return `${year} is year excess`;
 };
 
 export default yearExcess;

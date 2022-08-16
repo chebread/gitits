@@ -1,20 +1,20 @@
 import './content.css';
 import useState from '../components/useState.js';
 import useEffect from '../components/useEffect.js';
-import getPath from '../components/getPath.js';
-import getUsername from '../components/getUsername.js';
-import getParameterYear from '../components/getParameterYear.js';
 import request from '../components/request.js';
 import renderHTML from '../components/renderHTML.js';
 import loading from './loading.js';
-import errorRoutes from '../components/errorRoutes.js';
+import errorRoutes from '../routes/errorRoutes.js';
+import getUsername from './getUsername.js';
+import getParameterYear from './getParameterYear.js';
 
 const content = path => {
-  useEffect(() => {
-    getPath(path);
-  }, []);
-  const username = getUsername();
-  const parameterYear = getParameterYear();
+  console.time('start timer');
+  const pathArray = path.split('/');
+  const username = getUsername(pathArray[0]);
+  const parameterYear = getParameterYear(
+    pathArray[1] === undefined || pathArray[1] === '' ? null : pathArray[1] // null = undefined
+  );
   const [totalContributions, setTotalContributions] = useState(0);
   const [isError, setIsError] = useState(false);
   const [errorCode, setErrorCode] = useState(''); // errorCode
@@ -23,14 +23,15 @@ const content = path => {
   useEffect(() => {
     const utcYear = new Date().getUTCFullYear();
     const isParameter = parameterYear === undefined ? false : true;
+    // year excess
     if (isParameter) {
-      // year excess
       if (parameterYear < 2008 || parameterYear > utcYear) {
         setIsError(true);
         setErrorCode('YEAR_EXCESS');
         return;
       }
     }
+    console.timeEnd('start timer'); // 0.17
     // request
     (async () => {
       const query = {
@@ -49,6 +50,7 @@ const content = path => {
         }`,
       };
       const data = await request(query).then(data => data.data);
+      console.log(data);
       try {
         const totalContributions =
           data.user.contributionsCollection.contributionCalendar
