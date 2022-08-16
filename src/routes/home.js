@@ -5,7 +5,7 @@ import router from '../components/router.js';
 
 const home = () => {
   const html = `
-      <div>gitits.to</div> 
+      <div>gitits.to</div>
       </div>
         @<input id="input" type="text" autocomplete="off" />
       </div>
@@ -14,7 +14,7 @@ const home = () => {
   document.querySelector('#input').addEventListener('keydown', e => {
     const key = e.keyCode;
     if (key === 13) {
-      let value = e.target.value;
+      const value = e.target.value;
       const isMatches = usernameMatches(value);
       if (isMatches) {
         e.target.value = '';
