@@ -10,7 +10,7 @@ const getParameterYear = () => {
       values.data = undefined;
     }
     if (year != undefined && year != data) values.data = year;
-    return data;
+    return values.data;
   };
   return f;
 };
