@@ -1,4 +1,4 @@
-import getUsername from './getUsername.js';
+import getUsername from '../components/getUsername.js';
 
 const notFoundUser = () => {
   const username = getUsername();

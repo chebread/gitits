@@ -17,8 +17,6 @@ const routes = path => {
   if (!staticRoutes[path]) {
     // 동적라우트 -> static 라우트에 선언되지 않았다면 그냥 지금의 주소를 반영한 주소를 바로 렌더링한다
     const isRedirect = matches(path.substring(1, path.length)); // staticroute는 제외하여 동적 라우트를 작동시킨다
-    // console.log(isSlash, path);
-    // console.log(isSlash, path.substring(1, path.length)); // 8
     if (isRedirect) {
       // 404 처리 부분 -> 동적 라우트에서 매치가 안되는 규칙이 있다면 그 라우트는 404를 반환한다
       return staticRoutes['/404'];
