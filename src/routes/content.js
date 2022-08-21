@@ -5,16 +5,18 @@ import request from './request.js';
 import renderHTML from '../components/renderHTML.js';
 import loading from './loading.js';
 import errorRoutes from '../routes/errorRoutes.js';
-import getUsername from './getUsername.js';
-import getParameterYear from './getParameterYear.js';
+import getUsername from '../components/getUsername.js';
+import getParameterYear from '../components/getParameterYear.js';
 
 const content = path => {
   const pathArray = path.split('/');
+  const username = getUsername(pathArray[0]);
   const parameterYear = getParameterYear(
     pathArray[1] === undefined || pathArray[1] === '' ? null : pathArray[1] // null = undefined
   );
-  const username = getUsername(pathArray[0]);
-  const [totalContributions, setTotalContributions] = useState(0);
+  const [contributions, setContributions] = useState(0);
+  // Object.values(contributions).map(v => (a += v));
+  // console.log(a);
   const [errorCode, setErrorCode] = useState(''); // errorCode
   const [init, setInit] = useState(false); // for loading
 
@@ -25,22 +27,24 @@ const content = path => {
       const data = await request();
       console.log(data);
       try {
-        const totalContributions =
-          data.user.contributionsCollection.contributionCalendar
-            .totalContributions;
-        setTotalContributions(totalContributions);
+        console.log(
+          'c ' + data.user.contributionsCollection.totalCommitContributions
+        );
+        // const arr = [];
+        // const weeks =
+        //   data.user.contributionsCollection.contributionCalendar.weeks;
+        // weeks.map(a =>
+        //   a.contributionDays.map(b => arr.push(b.contributionCount))
+        // );
+        // setContributions([...contributions, ...arr]); // { 2022-01-01: 0, ... }
       } catch (err) {
         // not found user
         if (data.user === null) {
           setErrorCode('NOT_FOUND_USER');
-        } else {
-          // other errors
-          console.error(err);
-          setErrorCode(err);
         }
       }
       setInit(true); // user loading init
-      console.timeEnd('start timer'); // 0.17
+      console.timeEnd('start timer');
     })();
   }, []);
 
@@ -49,7 +53,7 @@ const content = path => {
     <div><a href="/">Back to the home</a></div>
     ${
       init != false && isError === false // loadding and error processing
-        ? `<div id="commits">${totalContributions} is ${username}</div>`
+        ? `<div id="commits">${0} is ${username}</div>`
         : isError === false
         ? loading()
         : errorRoutes(errorCode)
@@ -60,3 +64,10 @@ const content = path => {
 };
 
 export default content;
+
+// weeks.map(a =>
+//   a.contributionDays.map(b => {
+//     obj = { ...obj, [b.date]: b.contributionCount };
+//   })
+// );
+// console.log(obj);
