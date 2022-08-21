@@ -14,29 +14,25 @@ const content = path => {
   const parameterYear = getParameterYear(
     pathArray[1] === undefined || pathArray[1] === '' ? null : pathArray[1] // null = undefined
   );
-  const [contributions, setContributions] = useState(0);
-  // Object.values(contributions).map(v => (a += v));
-  // console.log(a);
+  const [contributions, setContributions] = useState({});
   const [errorCode, setErrorCode] = useState(''); // errorCode
   const [init, setInit] = useState(false); // for loading
 
+  console.log(contributions);
   useEffect(() => {
     console.time('start timer');
     // request
     (async () => {
-      const data = await request();
-      console.log(data);
+      const response = await request();
       try {
-        console.log(
-          'c ' + data.user.contributionsCollection.totalCommitContributions
+        const data = response.data;
+        let obj = {};
+        data.user.contributionsCollection.contributionCalendar.weeks.map(a =>
+          a.contributionDays.map(
+            b => (obj = { ...obj, [b.date]: b.contributionCount })
+          )
         );
-        // const arr = [];
-        // const weeks =
-        //   data.user.contributionsCollection.contributionCalendar.weeks;
-        // weeks.map(a =>
-        //   a.contributionDays.map(b => arr.push(b.contributionCount))
-        // );
-        // setContributions([...contributions, ...arr]); // { 2022-01-01: 0, ... }
+        setContributions({ ...contributions, ...obj }); // { 2021-01-01: 1 }
       } catch (err) {
         // not found user
         if (data.user === null) {
@@ -53,7 +49,7 @@ const content = path => {
     <div><a href="/">Back to the home</a></div>
     ${
       init != false && isError === false // loadding and error processing
-        ? `<div id="commits">${0} is ${username}</div>`
+        ? `<div id="commits">${contributions} is ${username}</div>`
         : isError === false
         ? loading()
         : errorRoutes(errorCode)
@@ -64,10 +60,3 @@ const content = path => {
 };
 
 export default content;
-
-// weeks.map(a =>
-//   a.contributionDays.map(b => {
-//     obj = { ...obj, [b.date]: b.contributionCount };
-//   })
-// );
-// console.log(obj);

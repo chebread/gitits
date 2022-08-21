@@ -4,25 +4,33 @@ import usernameMatches from './usernameMatches.js';
 import router from '../components/router.js';
 
 const home = () => {
-  const html = `
-      <div>gitits.to</div>
+  // html comments is code highlighting for the VSCode extensions
+  const html = /* html */ `
+    <div class="app-container">
+      <div class="flex direction-column">
+        <div class="title">gitits.to</div> <!--to separate / to use svg file-->
       </div>
-        @<input id="input" type="text" autocomplete="off" />
-      </div>
-    `;
+    </div>
+  `;
   renderHTML(html, document.querySelector('#root'));
-  document.querySelector('#input').addEventListener('keydown', e => {
-    const key = e.keyCode;
-    if (key === 13) {
-      const value = e.target.value;
-      const isMatches = usernameMatches(value);
-      if (isMatches) {
-        e.target.value = '';
-      } else {
-        router(`/${value}`);
-      }
-    }
-  });
+  // document.querySelector('#searchUser').addEventListener('keydown', e => {
+  //   const key = e.keyCode;
+  //   if (key === 13) {
+  //     const value = e.target.value;
+  //     const isMatches = usernameMatches(value);
+  //     if (isMatches) {
+  //       e.target.value = '';
+  //     } else {
+  //       router(`/${value}`);
+  //     }
+  //   }
+  // });
 };
 
 export default home;
+
+{
+  /* <div class="search-input">
+          <span>@</span><input id="searchUser" type="text" autocomplete="off" />
+        </div> */
+}

@@ -1,10 +1,10 @@
-div {
-  font-size: 30px;
-}
-div input {
-  font-size: 30px;
-}
+/* Remove Safari keychain button */
 input::-webkit-credentials-auto-fill-button {
-  /* Remove Safari keychain button*/
   visibility: hidden;
+}
+
+input {
+  all: unset;
+  max-width: 420px;
+  font-size: 32px;
 }
