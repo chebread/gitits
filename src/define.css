@@ -1,0 +1,81 @@
+/* app global */
+.app {
+  height: 100vh;
+  width: 100vw;
+  line-height: 1.2; /* font line height */
+}
+/* max-width */
+.max-width {
+  margin: 0 auto;
+  max-width: 1024px;
+}
+/* height */
+.h-94 {
+  height: 94px;
+}
+.h-45 {
+  height: 45px;
+}
+.h-4 {
+  height: 4px;
+}
+.h-38-4 {
+  height: 38.4px;
+}
+/* width */
+.w-320 {
+  width: 320px;
+}
+/* padding */
+.p-10 {
+  padding: 10px;
+}
+/* font size */
+.f-32 {
+  font-size: 32px;
+}
+.f-28 {
+  font-size: 28px;
+}
+/* border */
+.border {
+  box-sizing: border-box;
+}
+.border-1 {
+  border: 1px solid;
+}
+.border-whitesmoke {
+  border-color: whitesmoke;
+}
+.radius-500 {
+  border-radius: 500px;
+}
+/* background */
+.bg-whitesmoke {
+  background-color: whitesmoke;
+}
+
+/* flex */
+.flex {
+  display: flex;
+}
+/* direction */
+.direction-column {
+  flex-direction: column;
+}
+.direction-row {
+  flex-direction: row;
+}
+/* 정렬 */
+.items-center {
+  align-items: center;
+}
+
+/* input */
+input {
+  all: unset;
+}
+/* remove Safari keychain button */
+input::-webkit-credentials-auto-fill-button {
+  visibility: hidden;
+}
