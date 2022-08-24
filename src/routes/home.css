@@ -1,10 +1,10 @@
-/* Remove Safari keychain button */
-input::-webkit-credentials-auto-fill-button {
-  visibility: hidden;
+.gitits-logo {
+  /* text-shadow: -0.5px 0px black, 0px 0.5px black, 0.5px 0px black,
+    0px -0.5px black;
+  color: royalblue; */
 }
 
-input {
-  all: unset;
-  max-width: 420px;
-  font-size: 32px;
+.search:focus-within {
+  border: 2.5px solid royalblue;
+  padding: 8.5px;
 }

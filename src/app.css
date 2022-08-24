@@ -3,31 +3,15 @@ body {
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
   overflow-x: hidden;
 }
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   body {
     background-color: black;
     color: white;
   }
-}
+} */
 
 /* user's reset css*/
 a {
   all: unset;
   cursor: text;
-  color: rgb(64, 104, 224);
-}
-
-/* app's default top frame (non-mobile) */
-.app-container {
-  max-width: 1024px;
-  margin: 0 auto;
-  height: 100vh;
-}
-
-/* app's global css frames */
-.flex {
-  display: flex;
-}
-.direction-column {
-  flex-direction: column;
 }
