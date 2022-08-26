@@ -1,10 +1,16 @@
-.gitits-logo {
-  /* text-shadow: -0.5px 0px black, 0px 0.5px black, 0.5px 0px black,
-    0px -0.5px black;
-  color: royalblue; */
+.bg-test {
+  background-color: wheat;
 }
-
-.search:focus-within {
-  border: 2.5px solid royalblue;
+.bg-test2 {
+  background-color: rosybrown;
+}
+.hovered-item:hover {
+  border: 2px solid var(--royalblue);
+  background-color: white; /* 100 px of royalblue rgb(165, 205, 255) */
+  padding: 9px;
+}
+.focused-search:focus-within {
+  border: 2.5px solid var(--royalblue);
+  background-color: var(--white);
   padding: 8.5px;
 }

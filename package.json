@@ -1,7 +1,6 @@
 {
   "name": "gitits",
   "version": "0.1.0",
-  "description": "This can easily and specifically check Git commits.",
   "private": "true",
   "scripts": {
     "build": "node scripts/build.js",
@@ -9,6 +8,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "chart.js": "^3.9.1",
     "css-loader": "^6.7.1",
     "dotenv": "^16.0.1",
     "esbuild-loader": "^2.19.0",

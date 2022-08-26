@@ -1,3 +1,10 @@
+/* variables */
+:root {
+  --white: rgb(255, 255, 255);
+  --royalblue: rgb(65, 105, 225);
+  --light-whitesmoke: rgb(195, 195, 195); /* whitesmoke + 50px */
+  --whitesmoke: rgb(240, 240, 240);
+}
 /* app global */
 .app {
   height: 100vh;
@@ -6,8 +13,8 @@
 }
 /* max-width */
 .max-width {
-  margin: 0 auto;
   max-width: 1024px;
+  margin: 0 auto;
 }
 /* height */
 .h-94 {
@@ -22,6 +29,9 @@
 .h-38-4 {
   height: 38.4px;
 }
+.h-30 {
+  height: 30px;
+}
 /* width */
 .w-320 {
   width: 320px;
@@ -30,6 +40,9 @@
 .p-10 {
   padding: 10px;
 }
+.p-l-10 {
+  padding: 0 0 0 10px;
+}
 /* font size */
 .f-32 {
   font-size: 32px;
@@ -37,6 +50,10 @@
 .f-28 {
   font-size: 28px;
 }
+.f-18 {
+  font-size: 18px;
+}
+
 /* border */
 .border {
   box-sizing: border-box;
@@ -45,14 +62,17 @@
   border: 1px solid;
 }
 .border-whitesmoke {
-  border-color: whitesmoke;
+  border-color: var(--whitesmoke);
+}
+.border-light-whitesmoke {
+  border-color: var(--light-whitesmoke);
 }
 .radius-500 {
   border-radius: 500px;
 }
 /* background */
 .bg-whitesmoke {
-  background-color: whitesmoke;
+  background-color: var(--whitesmoke);
 }
 
 /* flex */
@@ -70,12 +90,24 @@
 .items-center {
   align-items: center;
 }
-
-/* input */
+/* wrap */
+.flex-wrap {
+  flex-wrap: wrap;
+}
+/* resets */
+a {
+  all: unset;
+  cursor: text;
+}
 input {
   all: unset;
+  cursor: text;
 }
 /* remove Safari keychain button */
 input::-webkit-credentials-auto-fill-button {
   visibility: hidden;
+}
+button {
+  all: unset;
+  cursor: text;
 }
