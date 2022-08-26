@@ -2,7 +2,6 @@ import './home.css';
 import renderHTML from '../components/renderHTML.js';
 import usernameMatches from '../components/usernameMatches.js';
 import router from '../components/router.js';
-import logoSvg from '../assets/logoSvg.js';
 
 const home = () => {
   // html comments is code highlighting for the VSCode extensions
@@ -15,7 +14,9 @@ const home = () => {
           <!--logo-->
           <div class="h-45 flex items-center">
               <div class="f-32"> <!--temperary-->
-                <span><a href="/">gitits.to</a></span>
+                <span>
+                  <a href="/">gitits.to</a>
+                </span>
               </div>
           </div>
           <div class="h-4"></div>
@@ -29,8 +30,9 @@ const home = () => {
               id="searchUser"
               style="width: 100%"
               type="text"
+              tabindex="1"
               autocomplete="off"
-              />
+              placeholder="github_username" />
           </div>
         </div>
         <!--bottom-->
@@ -44,7 +46,9 @@ const home = () => {
                 p-10 h-30
                 flex items-center
                 border-1 border-light-whitesmoke radius-500 border bg-whitesmoke">
-                <span class="content"><a href="/help">How to use</a></span>
+                <span>
+                  <a href="/help">How to use</a>
+                </span>
               </div>
             </div>
           </div>

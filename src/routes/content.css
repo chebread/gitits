@@ -1,0 +1,21 @@
+.bg-test {
+  background-color: seagreen;
+}
+.bg-test2 {
+  background-color: pink;
+}
+#canvas {
+  /* background-color: wheat; */
+}
+.parent {
+  background-color: rosybrown;
+}
+.child {
+  background-color: wheat;
+}
+.h-inherit {
+  height: inherit;
+}
+.justify-center {
+  justify-content: center;
+}
