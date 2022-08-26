@@ -11,7 +11,3 @@ body {
 } */
 
 /* user's reset css*/
-a {
-  all: unset;
-  cursor: text;
-}

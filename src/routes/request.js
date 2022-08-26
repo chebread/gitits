@@ -65,7 +65,7 @@ const request = async () => {
     headers: options,
     body: JSON.stringify(query),
   }).then(data => data.json());
-  console.log(response);
+  // console.log(response);
   return response;
 };
 

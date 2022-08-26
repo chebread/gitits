@@ -20,13 +20,15 @@ const util = () => {
     // 이부분을 Link 함수로 치환한다!
     document.addEventListener('DOMContentLoaded', () => {
       document.body.addEventListener('click', e => {
+        // 이거 그냥 빨리 link 함수로 치환해야 함
+        // a > div > span 일 경우 span이 감지됨 (click event에)
         if (e.target.nodeName === 'A') {
           const url = e.target.attributes.href.nodeValue;
           if (url.search(/https?:\/\//) === -1) {
             // http(s)이 문자열에 포함되어 있지 않다면 SPA형 Link 동작을 실행한다
             e.preventDefault(); // 이거 때문에 초기화 필요
             options.path = url;
-            stateInit(options.states.length);
+            stateInit(options.states.length); // ㅇ
             _render();
           }
         }
@@ -76,8 +78,14 @@ const util = () => {
     options.states[options.stateKey] = deps;
     options.stateKey += 1;
   };
-  return { render, useState, useEffect };
+  const router = url => {
+    // 그저 컴포넌트를 바꾸는 용도이다
+    options.path = url;
+    stateInit(options.states.length); // ㅇ
+    _render();
+  };
+  return { render, useState, useEffect, router };
 };
 
-const { render, useState, useEffect } = util();
-export { render, useState, useEffect };
+const { render, useState, useEffect, router } = util();
+export { render, useState, useEffect, router };
