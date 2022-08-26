@@ -8,9 +8,9 @@
   },
   "license": "MIT",
   "dependencies": {
-    "chart.js": "^3.9.1",
     "css-loader": "^6.7.1",
     "dotenv": "^16.0.1",
+    "echarts": "^5.3.3",
     "esbuild-loader": "^2.19.0",
     "file-loader": "^6.2.0",
     "fs-extra": "^10.1.0",

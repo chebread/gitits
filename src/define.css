@@ -2,8 +2,9 @@
 :root {
   --white: rgb(255, 255, 255);
   --royalblue: rgb(65, 105, 225);
-  --light-whitesmoke: rgb(195, 195, 195); /* whitesmoke + 50px */
+  --light-whitesmoke: rgb(215, 215, 215); /* whitesmoke + 70px */
   --whitesmoke: rgb(240, 240, 240);
+  --dark-gray: rgb(105, 105, 105);
 }
 /* app global */
 .app {
@@ -102,6 +103,9 @@ a {
 input {
   all: unset;
   cursor: text;
+}
+input::placeholder {
+  color: var(--dark-gray);
 }
 /* remove Safari keychain button */
 input::-webkit-credentials-auto-fill-button {
