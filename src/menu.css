@@ -1,0 +1,16 @@
+@media (prefers-color-scheme: light) {
+  .hovered-item:hover {
+    border: 2px solid var(--royalblue);
+    background-color: var(--white); /* 100 px of royalblue rgb(165, 205, 255) */
+    padding: 9px;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .hovered-item:hover {
+    border: 2px solid var(--royalblue);
+    background-color: var(
+      --dm-white
+    ); /* 100 px of royalblue rgb(165, 205, 255) */
+    padding: 9px;
+  }
+}

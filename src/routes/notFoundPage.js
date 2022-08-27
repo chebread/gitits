@@ -1,3 +1,4 @@
+import './notFoundPage.css';
 import renderHTML from '../components/renderHTML.js';
 
 const notFoundPage = () => {

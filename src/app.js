@@ -1,6 +1,7 @@
 import './reset.css';
 import './app.css';
 import './define.css';
+import './menu.css';
 import render from './components/render.js';
 
 const app = () => {
