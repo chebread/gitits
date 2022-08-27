@@ -9,7 +9,7 @@ const home = () => {
   const html = /* html */ `
     <div class="app">
       <!--container-->
-      <div class="max-width">
+      <div class="max-w-1024">
         <!--header-->
         ${search()}
         <!--bottom-->
@@ -22,7 +22,7 @@ const home = () => {
             hovered-item
             p-10 h-30
             flex items-center
-            border-1 border-light-whitesmoke dm-border-light-whitesmoke radius-500 border bg-whitesmoke dm-bg-whitesmoke">
+            border-1 border-whitesmoke dm-border-whitesmoke radius-500 border bg-whitesmoke dm-bg-whitesmoke">
             <span>
               <a href="/help">How to use</a>
             </span>
