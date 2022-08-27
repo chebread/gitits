@@ -1,7 +1,9 @@
+import './search.css';
 import getUsername from './getUsername.js';
 
 const search = () => {
   const username = getUsername();
+  const path = window.location.pathname;
   return /* html */ `
   <div class="h-94 p-10 flex direction-column">
     <!--logo-->
@@ -17,13 +19,13 @@ const search = () => {
       focused-search
       f-28 h-45 w-320 p-10
       flex direction-row items-center
-      border-1 border-whitesmoke radius-500 bg-whitesmoke border">
+      border-1 border-whitesmoke dm-border-whitesmoke radius-500 bg-whitesmoke dm-bg-whitesmoke border">
       <span>@</span>
       <input
         id="searchUser"
         style="width: 100%"
         type="text"
-        value="${username}"
+        value="${path === '/' ? '' : username}"
         tabindex="1"
         autocomplete="off"
         placeholder="github_username" />

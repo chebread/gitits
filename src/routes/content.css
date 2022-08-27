@@ -7,15 +7,12 @@
 #canvas {
   /* background-color: wheat; */
 }
-.parent {
-  background-color: rosybrown;
+.chart {
+  height: 512px;
+  width: 100%;
 }
-.child {
-  background-color: wheat;
-}
-.h-inherit {
+#canvas {
   height: inherit;
-}
-.justify-center {
-  justify-content: center;
+  width: inherit;
+  background-color: whitesmoke;
 }

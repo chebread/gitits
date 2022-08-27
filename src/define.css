@@ -5,11 +5,14 @@
   --light-whitesmoke: rgb(215, 215, 215); /* whitesmoke + 70px */
   --whitesmoke: rgb(240, 240, 240);
   --dark-gray: rgb(105, 105, 105);
+  --dm-white: rgb(0, 0, 0); /* dm is dark mode */
+  --dm-whitesmoke: rgb(15, 15, 15);
+  --dm-light-whitesmoke: rgb(40, 40, 40);
 }
 /* app global */
 .app {
-  height: 100vh;
   width: 100vw;
+  /* 최적화를 위해 100vh는 하지 않습니다 */
   line-height: 1.2; /* font line height */
 }
 /* max-width */
@@ -32,6 +35,9 @@
 }
 .h-30 {
   height: 30px;
+}
+.h-inherit {
+  height: inherit;
 }
 /* width */
 .w-320 {
@@ -62,18 +68,31 @@
 .border-1 {
   border: 1px solid;
 }
-.border-whitesmoke {
-  border-color: var(--whitesmoke);
+@media (prefers-color-scheme: light) {
+  /* background */
+  .bg-whitesmoke {
+    background-color: var(--whitesmoke);
+  }
+  .border-whitesmoke {
+    border-color: var(--whitesmoke);
+  }
+  .border-light-whitesmoke {
+    border-color: var(--light-whitesmoke);
+  }
 }
-.border-light-whitesmoke {
-  border-color: var(--light-whitesmoke);
+@media (prefers-color-scheme: dark) {
+  .dm-bg-whitesmoke {
+    background-color: var(--dm-whitesmoke);
+  }
+  .dm-border-whitesmoke {
+    border-color: var(--dm-whitesmoke);
+  }
+  .dm-border-light-whitesmoke {
+    border-color: var(--dm-light-whitesmoke);
+  }
 }
 .radius-500 {
   border-radius: 500px;
-}
-/* background */
-.bg-whitesmoke {
-  background-color: var(--whitesmoke);
 }
 
 /* flex */
@@ -90,6 +109,9 @@
 /* 정렬 */
 .items-center {
   align-items: center;
+}
+.justify-center {
+  justify-content: center;
 }
 /* wrap */
 .flex-wrap {
