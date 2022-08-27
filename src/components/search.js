@@ -23,7 +23,7 @@ const search = () => {
       <span>@</span>
       <input
         id="searchUser"
-        style="width: 100%"
+        class="w-100p"
         type="text"
         value="${path === '/' ? '' : username}"
         tabindex="1"

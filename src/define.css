@@ -6,8 +6,9 @@
   --whitesmoke: rgb(240, 240, 240);
   --dark-gray: rgb(105, 105, 105);
   --dm-white: rgb(0, 0, 0); /* dm is dark mode */
-  --dm-whitesmoke: rgb(15, 15, 15);
-  --dm-light-whitesmoke: rgb(40, 40, 40);
+  --dm-whitesmoke: rgb(35, 35, 35);
+  --dm-light-whitesmoke: rgb(60, 60, 60);
+  --dm-dark-gray: rgb(170, 170, 170);
 }
 /* app global */
 .app {
@@ -16,7 +17,7 @@
   line-height: 1.2; /* font line height */
 }
 /* max-width */
-.max-width {
+.max-w-1024 {
   max-width: 1024px;
   margin: 0 auto;
 }
@@ -79,6 +80,9 @@
   .border-light-whitesmoke {
     border-color: var(--light-whitesmoke);
   }
+  input::placeholder {
+    color: var(--dark-gray);
+  }
 }
 @media (prefers-color-scheme: dark) {
   .dm-bg-whitesmoke {
@@ -89,6 +93,9 @@
   }
   .dm-border-light-whitesmoke {
     border-color: var(--dm-light-whitesmoke);
+  }
+  input::placeholder {
+    color: var(--dm-dark-gray);
   }
 }
 .radius-500 {
@@ -125,9 +132,6 @@ a {
 input {
   all: unset;
   cursor: text;
-}
-input::placeholder {
-  color: var(--dark-gray);
 }
 /* remove Safari keychain button */
 input::-webkit-credentials-auto-fill-button {

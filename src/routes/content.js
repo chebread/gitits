@@ -32,8 +32,10 @@ const content = path => {
       try {
         let obj = {};
         data.user.contributionsCollection.contributionCalendar.weeks.map(a =>
-          a.contributionDays.map(
-            b => (obj = { ...obj, [b.date]: b.contributionCount })
+          a.contributionDays.map(b =>
+            b.contributionCount != 0
+              ? (obj = { ...obj, [b.date]: b.contributionCount })
+              : ''
           )
         );
         setContributions({ ...contributions, ...obj }); // { 2021-01-01: 1 }
@@ -48,35 +50,55 @@ const content = path => {
     })();
   }, []);
 
+  const months = [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
   const isError = errorCode === '' ? false : true;
   const html = /* html */ `
     <div class="app">
-      <div class="max-width h-inherit">
+      <div class="max-w-1024 h-inherit">
         <!--header-->
         ${search()}
         <!--menus-->
         <div>
       <!--items-->
-      <div class="f-18 flex direction-row flex-wrap">
+      <div class="f-18 flex direction-row" style="background-color: seagreen">
         <!--item-->
-        <div class="p-l-10">
+        <div class="p-l-10" style="display: flex; justify-content: flex-start">
           <div class="
             hovered-item
             p-10 h-30
             flex items-center
-            border-1 border-light-whitesmoke dm-border-light-whitesmoke radius-500 border bg-whitesmoke dm-bg-whitesmoke">
+            border-1 border-whitesmoke dm-border-whitesmoke radius-500 border bg-whitesmoke dm-bg-whitesmoke">
             <button id="yearBtn">
               <span>View by year</span>
             </button>
           </div>
         </div>
+        <!--years-->
+        <!-- <div class="flex direction-row w-100p" style="overflow: scroll;background-color: red">
+        ${months
+          .map(
+            a => `
+            <div class="p-l-10">
+              <div class="
+                hovered-item
+                p-10 h-30
+                flex items-center
+                border-1 border-whitesmoke dm-border-whitesmoke radius-500 border bg-whitesmoke dm-bg-whitesmoke">
+                <button id="yearBtn">
+                  <span>${a}df</span>
+                </button>
+              </div>
+            </div>`
+          )
+          .join('')}
+        </div> -->
         <!--item-->
-        <div class="p-l-10">
+        <div style="  margin-left: auto; padding: 0 10px 0 10px">
           <div class="
             hovered-item
             p-10 h-30
             flex items-center
-            border-1 border-light-whitesmoke dm-border-light-whitesmoke radius-500 border bg-whitesmoke dm-bg-whitesmoke">
+            border-1 border-whitesmoke dm-border-whitesmoke radius-500 border bg-whitesmoke dm-bg-whitesmoke">
             <span>
               <a
                 rel="noopener noreferrer"
@@ -94,8 +116,8 @@ const content = path => {
         ${
           init != false && isError === false // loadding and error processing
             ? /* html */ `
-            <div class="chart">
-              <canvas id="canvas" class="viewer"></canvas>
+            <div class="chart min-h-512 w-100p">
+              <canvas id="myChart" class="min-h-inherit viewer bg-whitesmoke dm-bg-whitesmoke radius-8 border-1 border-light-whitesmoke dm-border-light-whitesmoke border w-inherit"></canvas>
             </div>
             ` // 완전한 data만 들어가게 된다는 점
             : isError === false
@@ -113,7 +135,6 @@ const content = path => {
   if (init != false && isError === false) chart(contributions); // 로딩이 정상적으로 작동 되었음
   // event handles
   document.querySelector('#yearBtn').addEventListener('click', e => {
-    // 고질적인 useState 문제를 해결하기
     if (yearBtnToggle === false) {
       yearBtnToggle = true;
     } else {
@@ -127,7 +148,7 @@ const content = path => {
       const value = e.target.value;
       const isMatches = usernameMatches(value);
       if (isMatches) {
-        e.target.value = '';
+        e.target.value = username;
       } else {
         router(`/${value}`);
       }

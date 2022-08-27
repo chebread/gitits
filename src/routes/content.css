@@ -1,18 +1,24 @@
-.bg-test {
-  background-color: seagreen;
+.radius-8 {
+  border-radius: 8px;
 }
-.bg-test2 {
-  background-color: pink;
+.w-inherit {
+  width: inherit;
 }
-#canvas {
-  /* background-color: wheat; */
+.min-h-512 {
+  min-height: 512px;
 }
-.chart {
-  height: 512px;
+
+.min-h-inherit {
+  min-height: inherit;
+}
+
+.w-100p {
   width: 100%;
 }
-#canvas {
-  height: inherit;
-  width: inherit;
-  background-color: whitesmoke;
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.bg-test {
+  background-color: seagreen;
 }
