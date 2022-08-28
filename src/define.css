@@ -13,6 +13,7 @@
 /* app global */
 .app {
   width: 100vw;
+  white-space: nowrap; /* text가 wraping 되지 않습니다*/
   /* 최적화를 위해 100vh는 하지 않습니다 */
   line-height: 1.2; /* font line height */
 }

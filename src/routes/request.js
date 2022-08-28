@@ -43,11 +43,11 @@ const request = async () => {
     query: `
       query {
         user(login: "${username}") {
-          ${`contributionsCollection(from: "${
-            isParameter ? parameterYear : utcYear
-          }-01-01T00:00:00", to: "${
-            isParameter ? parameterYear : utcYear
-          }-12-31T23:59:59")`} {
+          ${`contributionsCollection${
+            isParameter
+              ? `(from: "${parameterYear}-01-01T00:00:00", to: "${parameterYear}-12-31T23:59:59")`
+              : ''
+          }`} {
             contributionCalendar {
               weeks {
                 contributionDays {
@@ -60,6 +60,7 @@ const request = async () => {
         }
       }`,
   };
+  console.log(query);
   const response = await fetch(url, {
     method: 'POST',
     headers: options,

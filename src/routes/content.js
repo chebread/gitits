@@ -6,7 +6,6 @@ import getParameterYear from '../components/getParameterYear.js';
 import request from './request.js';
 import renderHTML from '../components/renderHTML.js';
 import search from '../components/search.js';
-import loading from './loading.js';
 import errorRoutes from '../routes/errorRoutes.js';
 import usernameMatches from '../components/usernameMatches.js';
 import router from '../components/router.js';
@@ -18,10 +17,14 @@ const content = path => {
   const parameterYear = getParameterYear(
     pathArray[1] === undefined || pathArray[1] === '' ? null : pathArray[1] // null = undefined
   ); // setPath로 치환화
+  console.log(
+    parameterYear,
+    pathArray[1] === undefined || pathArray[1] === '' ? null : pathArray[1]
+  );
   const [contributions, setContributions] = useState({});
   const [errorCode, setErrorCode] = useState(''); // errorCode
   const [init, setInit] = useState(false); // for loading
-  let yearBtnToggle = false; // non-re-rendering
+  const [yearToggle, setYearToggle] = useState(false);
 
   useEffect(() => {
     console.time('start timer');
@@ -50,7 +53,10 @@ const content = path => {
     })();
   }, []);
 
-  const months = [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+  const months = [
+    2022, 2021, 2020, 2019, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009,
+    2008,
+  ];
   const isError = errorCode === '' ? false : true;
   const html = /* html */ `
     <div class="app">
@@ -60,9 +66,9 @@ const content = path => {
         <!--menus-->
         <div>
       <!--items-->
-      <div class="f-18 flex direction-row" style="background-color: seagreen">
+      <div class="f-18 flex direction-row" style="padding: 0 10px 0 10px">
         <!--item-->
-        <div class="p-l-10" style="display: flex; justify-content: flex-start">
+        <div class="p-r-10">
           <div class="
             hovered-item
             p-10 h-30
@@ -73,27 +79,30 @@ const content = path => {
             </button>
           </div>
         </div>
-        <!--years-->
-        <!-- <div class="flex direction-row w-100p" style="overflow: scroll;background-color: red">
-        ${months
-          .map(
-            a => `
-            <div class="p-l-10">
-              <div class="
-                hovered-item
-                p-10 h-30
-                flex items-center
-                border-1 border-whitesmoke dm-border-whitesmoke radius-500 border bg-whitesmoke dm-bg-whitesmoke">
-                <button id="yearBtn">
-                  <span>${a}df</span>
-                </button>
-              </div>
-            </div>`
-          )
-          .join('')}
-        </div> -->
+        ${
+          yearToggle
+            ? /* html */ `<div class="flex direction-row overflow-scroll w-100p">
+                ${months
+                  .map(
+                    year => `
+                    <div class="p-r-10">
+                      <div class="
+                        hovered-item
+                        p-10 h-30
+                        flex items-center
+                        border-1 border-whitesmoke dm-border-whitesmoke radius-500 border bg-whitesmoke dm-bg-whitesmoke">
+                        <button id="yearChildBtn" value="${year}">
+                          ${year}
+                        </button>
+                      </div>
+                    </div>`
+                  )
+                  .join('')}
+              </div>`
+            : ''
+        }
         <!--item-->
-        <div style="  margin-left: auto; padding: 0 10px 0 10px">
+        <div class=""> <!--no use p-r-10 -->
           <div class="
             hovered-item
             p-10 h-30
@@ -113,18 +122,14 @@ const content = path => {
     </div>
         <!--content-->
         <div class="p-10">
-        ${
-          init != false && isError === false // loadding and error processing
-            ? /* html */ `
-            <div class="chart min-h-512 w-100p">
-              <canvas id="myChart" class="min-h-inherit viewer bg-whitesmoke dm-bg-whitesmoke radius-8 border-1 border-light-whitesmoke dm-border-light-whitesmoke border w-inherit"></canvas>
-            </div>
-            ` // 완전한 data만 들어가게 된다는 점
-            : isError === false
-            ? loading()
-            : errorRoutes(errorCode)
-        }
-
+          ${
+            isError === false
+              ? /* html */ `
+            <div class="w-100p">
+              <canvas id="myChart" class="h-inherit viewer bg-whitesmoke dm-bg-whitesmoke radius-8 border-1 border-light-whitesmoke dm-border-light-whitesmoke border w-inherit"></canvas>
+            </div> `
+              : errorRoutes(errorCode)
+          }
         </div>
         <!--bottom-->
       </div>
@@ -135,11 +140,17 @@ const content = path => {
   if (init != false && isError === false) chart(contributions); // 로딩이 정상적으로 작동 되었음
   // event handles
   document.querySelector('#yearBtn').addEventListener('click', e => {
-    if (yearBtnToggle === false) {
-      yearBtnToggle = true;
+    if (yearToggle === false) {
+      setYearToggle(true);
     } else {
-      yearBtnToggle = false;
+      setYearToggle(false);
     }
+  });
+  document.querySelectorAll('#yearChildBtn').forEach(item => {
+    item.addEventListener('click', e => {
+      const year = e.target.value;
+      router(`/${username}/${year}`);
+    });
   });
   // console.log(yearBtnToggle);
   document.querySelector('#searchUser').addEventListener('keydown', e => {
@@ -161,8 +172,8 @@ export default content;
 // ${
 //   init != false && isError === false // loadding and error processing
 //     ? /* html */ `
-//     <div class="viewer parent">
-//       <canvas id="canvas"></canvas>
+//     <div class="chart h-512 w-100p">
+//       <canvas id="myChart" class="h-inherit viewer bg-whitesmoke dm-bg-whitesmoke radius-8 border-1 border-light-whitesmoke dm-border-light-whitesmoke border w-inherit"></canvas>
 //     </div>
 //     ` // 완전한 data만 들어가게 된다는 점
 //     : isError === false

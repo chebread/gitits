@@ -69,15 +69,13 @@ const chart = datas => {
           tooltip: {
             displayColors: false,
             titleFont: {
-              weight: 600,
-              family: "'Segoe UI', BlinkMacSystemFont",
+              weight: 500,
               size: 16,
             },
 
             bodyFont: {
-              family: "'Segoe UI', BlinkMacSystemFont",
               size: 14,
-              weight: 600,
+              weight: 500,
             },
           },
           legend: {

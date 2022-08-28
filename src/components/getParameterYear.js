@@ -1,12 +1,10 @@
 const getParameterYear = () => {
   const values = {
     data: undefined,
-    init: false,
   };
   const f = year => {
-    const { init, data } = values;
-    if (year === null && init === false) {
-      values.init = true;
+    const { data } = values;
+    if (year === null) {
       values.data = undefined;
     }
     if (year != undefined && year != data) values.data = year;

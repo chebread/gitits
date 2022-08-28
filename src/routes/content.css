@@ -4,12 +4,12 @@
 .w-inherit {
   width: inherit;
 }
-.min-h-512 {
-  min-height: 512px;
+.h-512 {
+  height: 512px;
 }
 
-.min-h-inherit {
-  min-height: inherit;
+.h-inherit {
+  height: inherit;
 }
 
 .w-100p {
@@ -21,4 +21,31 @@
 
 .bg-test {
   background-color: seagreen;
+}
+.p-r-10 {
+  padding-right: 10px;
+}
+.bg-test2 {
+  background-color: wheat;
+}
+.overflow-scroll {
+  overflow: scroll;
+  /* IE scroll 숨김 */
+  -ms-overflow-style: none;
+}
+.overflow-scroll::-webkit-scrollbar {
+  display: none;
+  width: 0 !important;
+}
+
+@media (min-width: 1024px) {
+  #myChart {
+    min-height: 512px;
+  }
+}
+
+@media (max-width: 1024px) {
+  #myChart {
+    max-height: 512px;
+  }
 }
