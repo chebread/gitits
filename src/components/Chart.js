@@ -1,6 +1,6 @@
-import loadScript from '../components/loadScript.js';
+import loadScript from '../modules/loadScript.js';
 
-const chart = datas => {
+const Chart = datas => {
   const promise = loadScript('https://cdn.jsdelivr.net/npm/chart.js');
   promise.then(() => {
     const { Chart } = window;
@@ -19,8 +19,8 @@ const chart = datas => {
           backgroundColor: 'rgba(0, 0, 0, 0)', // 무색
           pointBorderColor: 'rgba(0, 0, 0, 0)',
           pointStyle: 'circle',
-          pointRadius: 15,
-          pointHoverRadius: 20, // 이것은 배경은 없지만 hover된 상태에서는 크기가 남아있기 때문에 그 point를 벗어나더라도 이 크기의 범위 내에서는 유지가 되므로 재밌는 인터렉티브한 animation을 구현할 수 있다
+          pointRadius: 20,
+          pointHoverRadius: 25, // 이것은 배경은 없지만 hover된 상태에서는 크기가 남아있기 때문에 그 point를 벗어나더라도 이 크기의 범위 내에서는 유지가 되므로 재밌는 인터렉티브한 animation을 구현할 수 있다
         },
       ],
       grid: {
@@ -89,4 +89,4 @@ const chart = datas => {
   // contributions = { 2020-01-01: 321, ... }
 };
 
-export default chart;
+export default Chart;

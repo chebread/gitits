@@ -1,16 +1,16 @@
 import matches from './matches.js';
-import notFoundPage from '../routes/notFoundPage.js';
-import home from '../routes/home.js';
-import content from '../routes/content.js';
+import NotFoundPage from '../routes/NotFoundPage.js';
+import Home from '../routes/Home.js';
+import Content from '../routes/Content.js';
 
 const routes = path => {
   const staticRoutes = {
     '/': {
-      route: home,
+      route: Home,
       title: 'gitits.to',
     },
     '/404': {
-      route: notFoundPage,
+      route: NotFoundPage,
       title: '404 Not found page',
     },
   };
@@ -24,7 +24,7 @@ const routes = path => {
       return {
         ['/' + path.substring(1, path.length)]: {
           route: () =>
-            content(
+            Content(
               window.location.pathname.substring(
                 1,
                 window.location.pathname.length

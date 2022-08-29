@@ -1,7 +1,7 @@
 import debounceFrame from './debounceFrame.js';
-import helmet from '../components/helmet.js';
-import changePath from '../components/changePath.js';
-import renderRoute from '../components/renderRoute.js';
+import helmet from '../modules/helmet.js';
+import changePath from '../modules/changePath.js';
+import renderRoute from '../modules/renderRoute.js';
 
 const util = () => {
   const options = {

@@ -1,12 +1,12 @@
 @media (prefers-color-scheme: light) {
-  .focused-search:focus-within {
+  .search:focus-within {
     border: 2.5px solid var(--royalblue);
     background-color: var(--white);
     padding: 8.5px;
   }
 }
 @media (prefers-color-scheme: dark) {
-  .focused-search:focus-within {
+  .search:focus-within {
     border: 2.5px solid var(--royalblue);
     background-color: var(--dm-white);
     padding: 8.5px;
