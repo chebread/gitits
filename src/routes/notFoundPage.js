@@ -1,7 +1,7 @@
-import './notFoundPage.css';
-import renderHTML from '../components/renderHTML.js';
+import './NotFoundPage.css';
+import renderHTML from '../modules/renderHTML.js';
 
-const notFoundPage = () => {
+const NotFoundPage = () => {
   const contentMsg = `
       <div style="display: block;">
         <div style="padding: 5px;">
@@ -28,4 +28,4 @@ const notFoundPage = () => {
     );
 };
 
-export default notFoundPage;
+export default NotFoundPage;
