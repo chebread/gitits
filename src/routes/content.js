@@ -4,23 +4,39 @@ import useEffect from '../modules/useEffect.js';
 import Search from '../components/Search.js';
 import Chart from '../components/Chart.js';
 import ContentMenu from '../components/ContentMenu.js';
-import getUsername from '../modules/getUsername.js';
-import getParameterYear from '../modules/getParameterYear.js';
 import request from '../modules/request.js';
 import renderHTML from '../modules/renderHTML.js';
 import errorRoutes from '../modules/errorRoutes.js';
+import setPath from '../modules/setPath.js';
+import $ from '../modules/selector.js';
 
+const styled =
+  HtmlTag =>
+  ([style]) =>
+  children => {
+    console.log(HtmlTag, style, children);
+  };
+
+const Button = styled('button')`
+  color: blue;
+  &:hover {
+    color: red;
+  }
+`;
+Button(`
+  <div>
+    <span>Hello</span>
+  </div>
+`);
 const Content = path => {
-  const pathArray = path.split('/');
-  const username = getUsername(pathArray[0]);
-  const parameterYear = getParameterYear(
-    pathArray[1] === undefined || pathArray[1] === '' ? null : pathArray[1] // null = undefined
-  ); // setPath로 치환화
   const [contributions, setContributions] = useState({});
   const [errorCode, setErrorCode] = useState(''); // errorCode
   const [init, setInit] = useState(false); // for loading
+
   useEffect(() => {
-    console.time('start timer');
+    // setting path
+    setPath(path.split('/'));
+    console.time();
     // request
     (async () => {
       const response = await request();
@@ -43,9 +59,10 @@ const Content = path => {
         }
       }
       setInit(true); // user loading init
-      console.timeEnd('start timer');
+      console.timeEnd();
     })();
   }, []);
+
   const isError = errorCode === '' ? false : true;
   const html = /* html */ `
     <div class="app">
@@ -73,12 +90,15 @@ const Content = path => {
       </div>
     </div>
   `;
-  renderHTML(html, document.querySelector('#root'));
+  renderHTML(html, $('#root'));
   // components rendering
-  Search();
-  ContentMenu();
-  if (init != false && isError === false) Chart(contributions);
-  // event handling
+  Search($('#userSearch'));
+  ContentMenu($('#contentMenu'));
+  if (init != false && isError === false)
+    Chart({
+      contributions,
+      element: $('#myChart'),
+    });
 };
 
 export default Content;

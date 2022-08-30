@@ -1,16 +1,16 @@
 @media (prefers-color-scheme: light) {
   .items:hover {
-    border: 2px solid var(--royalblue);
-    background-color: var(--white); /* 100 px of royalblue rgb(165, 205, 255) */
-    padding: 9px;
+    border: 2.5px solid var(--white);
+    background-color: white; /* 100 px of royalblue rgb(165, 205, 255) */
+    padding: 8.5px;
   }
 }
 @media (prefers-color-scheme: dark) {
   .items:hover {
-    border: 2px solid var(--royalblue);
+    border: 2.5px solid var(--royalblue);
     background-color: var(
       --dm-white
     ); /* 100 px of royalblue rgb(165, 205, 255) */
-    padding: 9px;
+    padding: 8.5px;
   }
 }

@@ -1,7 +1,7 @@
 import './homeMenu.css';
 import renderHTML from '../modules/renderHTML.js';
 
-const HomeMenu = () => {
+const HomeMenu = element => {
   const html = /*html */ `
         <div>
           <!--items-->
@@ -21,7 +21,7 @@ const HomeMenu = () => {
           </div>
         </div>`;
 
-  renderHTML(html, document.querySelector('#homeMenu'));
+  renderHTML(html, element);
 };
 
 export default HomeMenu;

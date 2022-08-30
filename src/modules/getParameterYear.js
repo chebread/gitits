@@ -1,17 +1,12 @@
+import getPath from './getPath.js';
+
 const getParameterYear = () => {
-  const values = {
-    data: undefined,
-  };
-  const f = year => {
-    const { data } = values;
-    if (year === null) {
-      values.data = undefined;
-    }
-    if (year != undefined && year != data) values.data = year;
-    return values.data;
-  };
-  return f;
+  const pathArray = getPath();
+  const parameterYear =
+    pathArray[1] === undefined || pathArray[1] === ''
+      ? undefined
+      : pathArray[1];
+  return parameterYear;
 };
 
-const f = getParameterYear();
-export default f;
+export default getParameterYear;
