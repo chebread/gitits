@@ -3,8 +3,9 @@ import getUsername from '../modules/getUsername.js';
 import renderHTML from '../modules/renderHTML.js';
 import usernameMatches from '../modules/usernameMatches.js';
 import router from '../modules/router.js';
+import $ from '../modules/selector.js';
 
-const Search = () => {
+const Search = element => {
   const username = getUsername();
   const path = window.location.pathname;
   const html = /* html */ `
@@ -34,8 +35,8 @@ const Search = () => {
       </div>
     </div>
   `;
-  renderHTML(html, document.querySelector('#userSearch'));
-  document.querySelector('#searchUser').addEventListener('keydown', e => {
+  renderHTML(html, element);
+  $('#searchUser').addEventListener('keydown', e => {
     const key = e.keyCode;
     if (key === 13) {
       const value = e.target.value;

@@ -1,5 +1,5 @@
-import './NotFoundPage.css';
 import renderHTML from '../modules/renderHTML.js';
+import $ from '../modules/selector.js';
 
 const NotFoundPage = () => {
   const contentMsg = `
@@ -12,20 +12,16 @@ const NotFoundPage = () => {
       </div>
     `;
   renderHTML(contentMsg, document.querySelector('#root'));
-  document
-    .querySelector('a')
-    .addEventListener(
-      'ontouchstart' in document.documentElement ? 'touchstart' : 'mouseover',
-      e =>
-        (e.target.style =
-          'all: unset; cursor: text; color: royalblue; text-decoration: underline;')
-    );
-  document
-    .querySelector('a')
-    .addEventListener(
-      'ontouchstart' in document.documentElement ? 'touchend' : 'mouseleave',
-      e => (e.target.style = 'all: unset; cursor: text; color: royalblue;')
-    );
+  $('a').addEventListener(
+    'ontouchstart' in document.documentElement ? 'touchstart' : 'mouseover',
+    e =>
+      (e.target.style =
+        'all: unset; cursor: text; color: royalblue; text-decoration: underline;')
+  );
+  $('a').addEventListener(
+    'ontouchstart' in document.documentElement ? 'touchend' : 'mouseleave',
+    e => (e.target.style = 'all: unset; cursor: text; color: royalblue;')
+  );
 };
 
 export default NotFoundPage;

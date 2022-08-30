@@ -3,7 +3,8 @@ import useState from '../modules/useState.js';
 import renderHTML from '../modules/renderHTML.js';
 import getUsername from '../modules/getUsername.js';
 import router from '../modules/router.js';
-
+import $ from '../modules/selector.js';
+import $all from '../modules/selectorAll.js';
 const ContentMenu = () => {
   const username = getUsername();
   const [yearToggle, setYearToggle] = useState(false);
@@ -65,15 +66,15 @@ const ContentMenu = () => {
         </div>
       </div>
   `;
-  renderHTML(html, document.querySelector('#contentMenu'));
-  document.querySelector('#yearBtn').addEventListener('click', e => {
+  renderHTML(html, $('#contentMenu'));
+  $('#yearBtn').addEventListener('click', e => {
     if (yearToggle === false) {
       setYearToggle(true);
     } else {
       setYearToggle(false);
     }
   });
-  document.querySelectorAll('#yearChildBtn').forEach(item => {
+  $all('#yearChildBtn').forEach(item => {
     item.addEventListener('click', e => {
       const year = e.target.value;
       router(`/${username}/${year}`);
