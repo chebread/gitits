@@ -56,4 +56,3 @@ jspm_packages/
 # mise
 .DS_Store
 dist
-package-lock.json
