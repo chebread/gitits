@@ -14,7 +14,11 @@ const HomeMenu = element => {
                 flex items-center
                 border-1 border-whitesmoke dm-border-whitesmoke radius-500 border bg-whitesmoke dm-bg-whitesmoke">
                 <span>
-                  <a href="/help">How to use</a>
+                <a
+                  rel="noopener noreferrer"
+                  href="https://haneum.notion.site/help-ea713b38b45e49cab235c6f7bd4d20f4"
+                  target="_blank">
+                  How to use</a>
                 </span>
               </div>
             </div>
