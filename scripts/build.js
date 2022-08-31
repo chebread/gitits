@@ -12,5 +12,6 @@ fs.copySync(paths.appPublic, paths.appBuild, {
 });
 const build = () => {
   compiler.run();
+  console.log(compiler);
 };
 build();
