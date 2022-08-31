@@ -5,6 +5,7 @@ dotenv.config({
   path: paths.dotenv, // .env
 });
 
+console.log(process.env.NODE_ENV);
 function getClientEnvironment(publicUrl) {
   const raw = Object.keys(process.env).reduce(
     (env, key) => {
