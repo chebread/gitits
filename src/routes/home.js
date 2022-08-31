@@ -1,6 +1,5 @@
 import renderHTML from '../modules/renderHTML.js';
 import Search from '../components/Search.js';
-import HomeMenu from '../components/HomeMenu.js';
 import $ from '../modules/selector.js';
 
 const Home = () => {
@@ -15,7 +14,6 @@ const Home = () => {
   `;
   renderHTML(html, $('#root'));
   Search($('#userSearch'));
-  HomeMenu($('#homeMenu'));
 };
 
 export default Home;
