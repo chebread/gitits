@@ -2,6 +2,7 @@ import matches from './matches.js';
 import NotFoundPage from '../routes/NotFoundPage.js';
 import Home from '../routes/Home.js';
 import Content from '../routes/Content.js';
+import Help from '../routes/Help.js';
 
 const routes = path => {
   const staticRoutes = {
@@ -12,6 +13,10 @@ const routes = path => {
     '/404': {
       route: NotFoundPage,
       title: '404 Not found page',
+    },
+    '/help': {
+      route: Help,
+      title: 'help',
     },
   };
   if (!staticRoutes[path]) {

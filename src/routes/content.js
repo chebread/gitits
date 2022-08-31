@@ -10,24 +10,23 @@ import errorRoutes from '../modules/errorRoutes.js';
 import setPath from '../modules/setPath.js';
 import $ from '../modules/selector.js';
 
-const styled =
-  HtmlTag =>
-  ([style]) =>
-  children => {
-    console.log(HtmlTag, style, children);
-  };
-
-const Button = styled('button')`
-  color: blue;
-  &:hover {
-    color: red;
-  }
-`;
-Button(`
-  <div>
-    <span>Hello</span>
-  </div>
-`);
+// const styled =
+//   HtmlTag =>
+//   ([style]) =>
+//   children => {
+//     console.log(HtmlTag, style, children);
+//   };
+// const Button = styled('button')`
+//   color: blue;
+//   &:hover {
+//     color: red;
+//   }
+// `;
+// Button(`
+//   <div>
+//     <span>Hello</span>
+//   </div>
+// `);
 const Content = path => {
   const [contributions, setContributions] = useState({});
   const [errorCode, setErrorCode] = useState(''); // errorCode
@@ -36,7 +35,6 @@ const Content = path => {
   useEffect(() => {
     // setting path
     setPath(path.split('/'));
-    console.time();
     // request
     (async () => {
       const response = await request();
@@ -59,7 +57,6 @@ const Content = path => {
         }
       }
       setInit(true); // user loading init
-      console.timeEnd();
     })();
   }, []);
 

@@ -5,6 +5,7 @@ import getUsername from '../modules/getUsername.js';
 import router from '../modules/router.js';
 import $ from '../modules/selector.js';
 import $all from '../modules/selectorAll.js';
+
 const ContentMenu = () => {
   const username = getUsername();
   const [yearToggle, setYearToggle] = useState(false);
