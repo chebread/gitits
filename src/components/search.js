@@ -13,7 +13,7 @@ const Search = element => {
       <div class="h-45 flex items-center">
         <div class="f-32">
           <span>
-            <a href="/">gitits.to</a>
+            <a href="/">gitits</a>
           </span>
         </div>
       </div>
