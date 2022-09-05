@@ -9,7 +9,7 @@ const loadScript = url => {
     };
     script.src = url;
     if (!document || !document.head) return;
-    document.head.appendChild(script);
+    document.head.appendChild(script); // 계속 나오는 이거 버그 잡기
   });
 };
 

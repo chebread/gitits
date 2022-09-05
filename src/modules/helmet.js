@@ -6,6 +6,7 @@ const helmet = () => {
   };
   const changeContent = (tag, content) => {
     tag.setAttribute('content', content);
+    console.log(tag);
   };
   const options = {
     path: '',
@@ -18,13 +19,9 @@ const helmet = () => {
     }
     const data = {
       title: `${
-        routes(pathname).title + (pathname === '/' ? '' : ' - gitits.to')
+        routes(pathname).title + (pathname === '/' ? '' : ' - gitits')
       }`,
-      url:
-        window.location.protocol +
-        '//' +
-        window.location.host +
-        window.location.pathname,
+      url: window.location.protocol + '//' + window.location.host + pathname,
       name: 'gitits.to',
       description: 'gitits is easily view git commits pushed to github.',
     };
