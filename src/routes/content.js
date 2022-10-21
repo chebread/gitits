@@ -10,23 +10,6 @@ import errorRoutes from '../modules/errorRoutes.js';
 import setPath from '../modules/setPath.js';
 import $ from '../modules/selector.js';
 
-// const styled =
-//   HtmlTag =>
-//   ([style]) =>
-//   children => {
-//     console.log(HtmlTag, style, children);
-//   };
-// const Button = styled('button')`
-//   color: blue;
-//   &:hover {
-//     color: red;
-//   }
-// `;
-// Button(`
-//   <div>
-//     <span>Hello</span>
-//   </div>
-// `);
 const Content = path => {
   const [contributions, setContributions] = useState({});
   const [errorCode, setErrorCode] = useState(''); // errorCode
