@@ -1,9 +1,10 @@
 # gitits
-gitits is easily view contributions from github.
+`gitits` is easily view contributions from github.
 
-## Website Link
-
-## Project Stack
-- Vanilla JS (ES 2022)
+## Tech Stack
+- Vanilla JS
 - chart.js
 - GitHub GraphQL API
+
+## LICENSE
+MIT LICENSE &copy; 2022-2025 Cha Haneum
