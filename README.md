@@ -7,4 +7,4 @@
 - GitHub GraphQL API
 
 ## LICENSE
-MIT LICENSE &copy; 2022-2025 Cha Haneum
+MIT LICENSE &copy; 2022-2026 Cha Haneum
